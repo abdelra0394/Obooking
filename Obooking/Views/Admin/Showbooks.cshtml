@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Obooking.Models.Book>
+
+@{
+    ViewBag.Title = "Show books";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+<h2>Show books</h2>
+
+<p>
+    @Html.ActionLink("Create New Book", "createBook", FormMethod.Get)
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageBook)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BooKDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPopularity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookEdition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BookCategory)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookName)
+            </td>
+            <td>
+                <img src="@Html.DisplayFor(modelItem => item.ImageBook)" width="80px" height="50px">
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BooKDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookPopularity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookEdition)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BookCategory)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditBook", new { id = item.BookId }) |
+                @Html.ActionLink("Delete", "DeleteBook", new { id = item.BookId })
+            </td>
+        </tr>
+    }
+
+</table>

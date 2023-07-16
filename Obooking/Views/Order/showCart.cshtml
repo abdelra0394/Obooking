@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Obooking.Models.Cart>
+
+@{
+    ViewData["Title"] = "customerOrders";
+}
+
+<h1>customerOrders</h1>
+
+<p>
+    @Html.ActionLink("Back", "Showmain", "main")
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.order.ID)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.book.BookName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.orderDetails.quantity)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.order.ID)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.book.BookName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.orderDetails.quantity)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditOrder", new { id = item.orderDetails.ID  }) |
+                @Html.ActionLink("Delete", "DeleteOrder", new { id = item.orderDetails.ID })
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

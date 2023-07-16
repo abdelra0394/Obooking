@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Obooking.Models.Cart>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.book.BookName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.order.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.orderDetails.quantity)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.book.BookName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.order.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.orderDetails.quantity)
+            </td>
+
+
+        </tr>
+    }
+
+</table>
+

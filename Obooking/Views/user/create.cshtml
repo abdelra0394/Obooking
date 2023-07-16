@@ -1,0 +1,152 @@
+﻿@model Obooking.Models.User
+
+@{
+    ViewBag.Title = "create";
+}
+@{Layout = "";}
+
+<div class="box">
+
+    @using (Html.BeginForm("signup", "user", new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+
+        <h2>Registier Form</h2>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.username, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div type="text">
+                @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div type="password">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.addresss, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div type="password">
+                @Html.EditorFor(model => model.addresss, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.addresss, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div type="password">
+            @Html.LabelFor(model => model.phone_number, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone_number, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone_number, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="actionbtn">
+            <button type="submit">Sign up</button>
+
+        </div>
+
+        <br />
+        <br />
+        <div style="color:red;">
+            @TempData["AlertMessageSignup"]
+        </div>
+
+    }
+    <button onclick="location.href = '@Url.Action("login","user")'">Login</button>
+
+</div>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: gray;
+    }
+
+    .box {
+        height: 580px;
+        width: 500px;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        background-color: wheat;
+    }
+
+
+        .box h1 {
+            color: white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .box input[type = "text"], .box input[type = "password"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: black;
+            border-radius: 24px;
+            transition: 0.25s;
+            margin-left: 150px;
+        }
+
+            .box input[type = "text"]:focus, .box input[type = "password"]:focus {
+                width: 240px;
+                border-color: #2ecc71;
+            }
+
+        .box input[type = "submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 40px;
+            outline: none;
+            color: black;
+            border-radius: 20px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+
+        .box .actionbtn {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .box button {
+            padding: 10px 60px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            font-weight: 500;
+            background-color: #afb32f;
+            color: black;
+            cursor: pointer;
+        }
+
+            .box button:nth-child(2) {
+                border: 1px solid #999;
+                color: black;
+                margin-left: 300px;
+                margin-top: -90px;
+                background: #4cbd2d;
+            }
+</style>

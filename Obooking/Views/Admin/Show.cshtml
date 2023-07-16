@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Obooking.Models.Category>
+@{
+    ViewBag.Title = "Show";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Welcome Admin</h2>
+
+@using (Html.BeginForm("createCategory", "Admin", FormMethod.Get))
+{
+    <br />
+    <button type="submit" class="btn btn-danger">Add Category</button>
+}
+
+
+@using (Html.BeginForm("CreateBook", "Admin", FormMethod.Get))
+{
+    <br />
+    <button type="submit" class="btn btn-warning">Add Book</button>
+}
+
+
+@using (Html.BeginForm("ManageOrders", "Admin", FormMethod.Get))
+{
+    <br />
+    <button type="submit" class="btn btn-success">Manage Orders</button>
+}
+
+@using (Html.BeginForm("ShowSalesData", "Admin", FormMethod.Get))
+{
+    <br />
+    <button type="submit" class="btn btn-success">Show books statistics</button>
+}
+
+@using (Html.BeginForm("chart2", "Admin", FormMethod.Get))
+{
+    <br />
+    <button type="submit" class="btn btn-success">Show catigories statistics</button>
+}

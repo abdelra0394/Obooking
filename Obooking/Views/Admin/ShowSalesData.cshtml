@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "ShowSalesData";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+}
+
+<h2>ShowSalesData</h2>
+
+<input id="ID" value="Show Graph" type="button" />
+<br />
+
+<div>
+    <canvas id="myChart" style="max-width:500px;max-height:550px; align-content:center;"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: @Html.Raw(ViewBag.labels),
+            datasets: [{
+                label: '# of Votes',
+                data: @Html.Raw(ViewBag.SalesNumber),
+                //data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

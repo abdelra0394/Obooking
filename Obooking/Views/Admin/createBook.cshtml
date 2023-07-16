@@ -1,0 +1,231 @@
+﻿@model Obooking.Models.Book
+
+@{
+    ViewBag.Title = Model == null ? "Create " : "Edit " + Model.BookName;
+    ViewBag.action = Model == null ? "createBook" : "createBook";
+    ViewBag.butn = Model == null ? "Create" : "Save";
+}
+
+<h2>@ViewBag.Title</h2>
+@{
+    string x, btn;
+    x = ViewBag.action;
+    btn = ViewBag.butn;
+}
+<div class="box">
+    @using (Html.BeginForm(x, "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(m => m.BookId)
+
+        <h1>Books</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookName, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.EditorFor(model => model.BookName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BooKDescription, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="" text">
+                @Html.EditorFor(model => model.BooKDescription, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BooKDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookPopularity, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.DropDownListFor(model => model.BookPopularity, ViewBag.popular as SelectList, "Select popularity...", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BookPopularity, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookPrice, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.EditorFor(model => model.BookPrice, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookPrice, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookCount, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.EditorFor(model => model.BookCount, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookCount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookEdition, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.EditorFor(model => model.BookEdition, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BookEdition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookStatus, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.DropDownListFor(model => model.BookStatus, ViewBag.status as SelectList, "Select Status...", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BookStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.BookCategory, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                @Html.DropDownListFor(model => model.BookCategory, ViewBag.Categories as SelectList, "Select category...", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BookCategory, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <h4>@Html.LabelFor(model => model.ImageBook, htmlAttributes: new { @class = "control-label col-md-2" })</h4>
+            <div class="text">
+                <input type="file" name="ImageFile" />
+            </div>
+        </div>
+
+        <h6> <span>add</span> Book and <span>Delete</span> it  </h6>
+        <h6> Welcome admin in this page You can </h6>
+
+        <div class="form-group">
+            <div class="submit">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+
+    }
+    <div class="actionbtn">
+        <button onclick="location.href = '@Url.Action("Showbooks", "Admin")'">Show Books </button>
+        <button onclick="location.href = '@Url.Action("Show", "Admin")'">Main Page </button>
+
+    </div>
+
+</div>
+
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+        background-color: gray;
+    }
+
+    .box {
+        width: 100%;
+        height: 100%;
+        padding: 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        background-color: black;
+    }
+
+        .box h4 {
+            color: white;
+            margin-top: 20px;
+        }
+
+        .box h1 {
+            color: white;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .box h6 {
+            margin-left: 400px;
+            margin-top: -150px;
+            color: white;
+            font-family: 'Lucida Sans Typewriter';
+            font-weight: 500;
+            font-size: 2.5em;
+        }
+
+            .box h6 span {
+                color: red;
+                font-family: 'Lucida Sans Typewriter';
+                font-weight: 500;
+            }
+
+        .box input[type = "text"], .box input[type = "password"] {
+            border: 0;
+            background: none;
+            margin-top: 40px;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+            border: 2px solid #3498db;
+            padding: 14px 10px;
+            width: 200px;
+            outline: none;
+            color: white;
+            border-radius: 24px;
+            transition: 0.25s;
+            margin-left: 120px;
+        }
+
+            .box input[type = "text"]:focus, .box input[type = "password"]:focus {
+                width: 240px;
+                border-color: #2ecc71;
+            }
+
+        .box input[type = "submit"] {
+            border: 0;
+            background: none;
+            display: block;
+            margin-left: 250px;
+            margin-top: 230px;
+            text-align: start;
+            border: 2px solid #3498db;
+            padding: 14px 40px;
+            outline: none;
+            color: white;
+            border-radius: 20px;
+            transition: 0.25s;
+            cursor: pointer;
+        }
+
+            .box input[type = "submit"]:hover {
+                background: #2ecc71;
+            }
+
+
+        .box .actionbtn {
+            display: flex;
+            margin-top: -160px;
+            margin-left: 200px;
+        }
+
+        .box button {
+            padding: 10px 30px;
+            border-radius: 5px;
+            margin-left: 500px;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            font-weight: 500;
+            background-color: #2ecc71;
+            color: #fff;
+            cursor: pointer;
+        }
+
+            .box button:nth-child(2) {
+                margin-right: 100px;
+                margin-left: 100px;
+                border: 1px solid #999;
+                color: white;
+                background: #9845c9;
+            }
+</style>
+

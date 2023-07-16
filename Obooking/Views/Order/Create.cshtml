@@ -1,0 +1,87 @@
+﻿@model Obooking.Models.MakeOrder
+
+@{
+    ViewData["Title"] = "Create";
+   
+}
+
+<h1>Create</h1>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.book.BookId)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.book.BookId)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.book.BookName)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.book.BookName)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.book.BooKDescription)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.book.BooKDescription)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.book.BookCount);
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.book.BookCount)
+    </dd>
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.book.BookPrice)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.book.BookPrice)
+    </dd>
+
+    <dt class="col-sm-2">
+        @Html.DisplayNameFor(model => model.book.BookPopularity)
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.book.BookPopularity)
+    </dd>
+    <dt>
+        Pic
+    </dt>
+    <dd>
+        <img src="~/images/@Model.book.ImageBook" height="150" />
+        <br />@Model.book.ImageBook
+
+    </dd>
+</dl>
+
+
+@using (Html.BeginForm("Create", "Order", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.book.BookId)
+    <div class="form-horizontal">
+        <h4>Order</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.OrderDetails.quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OrderDetails.quantity, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+<div>
+    @Html.ActionLink("Go to cart", "userOrder", "Order")
+</div>
+
